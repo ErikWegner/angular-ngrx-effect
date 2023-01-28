@@ -1,0 +1,5 @@
+<p>Application UI</p>
+<button (click)="click()">Click to trigger</button>
+<div *ngIf="(loading$ | async) === true">Loading</div>
+<div *ngIf="(text$ | async) as text">{{ text }}</div>
+<div *ngIf="(error$ | async) as error">{{ error }}</div>
