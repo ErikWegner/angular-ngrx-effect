@@ -1,0 +1,12 @@
+.loading {
+  font-size: smaller;
+}
+
+.text,
+.error {
+  padding: 10px 3px;
+}
+
+.error {
+  color: red;
+}

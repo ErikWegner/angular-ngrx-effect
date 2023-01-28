@@ -6,7 +6,7 @@ import {
   appClicked,
   appLoadFailure,
   appLoading,
-  appQuoteLoaded
+  appQuoteLoaded,
 } from './app.actions';
 
 @Injectable()
@@ -15,22 +15,20 @@ export class AppEffects {
     return this.actions$.pipe(
       ofType(appClicked),
       map(() => appLoading())
-    )
+    );
   });
 
   loadQuote$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(appClicked),
       exhaustMap(() =>
-        this.quoteService
-          .getQuote()
-          .pipe(
-            map((quote) => appQuoteLoaded({ text: quote })),
-            catchError((err) => of(appLoadFailure({ errormessage: err.message })))
-          )
+        this.quoteService.getQuote().pipe(
+          map((quote) => appQuoteLoaded({ text: quote })),
+          catchError((err) => of(appLoadFailure({ errormessage: err.message })))
+        )
       )
-    )
+    );
   });
 
-  constructor(private actions$: Actions, private quoteService: QuoteService) { }
+  constructor(private actions$: Actions, private quoteService: QuoteService) {}
 }
